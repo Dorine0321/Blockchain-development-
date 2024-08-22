@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List</title>
+  <link rel="stylesheet" href="styletodo.css">
+</head>
+<body>
+  <div class="container">
+    <h1>To-Do List</h1>
+    <div class="form-container">
+      <input type="text" id="name" placeholder="Task Name" />
+      <input type="text" id="description" placeholder="Task Description" />
+      <input type="date" id="endDate" placeholder="Due Date" />
+      <button id="create-btn">Create</button>
+      <button id="update-btn" style="display: none;">Update</button>
+    </div>
+   
+    <div class="todo-list">
+      <ul id="todo-list"></ul>
+    </div>
+  </div>
+  <script>
+  const Todocreate = [];
+let selectedIndex = null;
+
+function create(name, description, endDate) {
+  console.log("creation", name, description, endDate)
+  Todocreate.push({ name, description, endDate });
+  updateTodoList();
+}
+
+function list() {
+  console.log(Todocreate);
+  return Todocreate;
+}
+
+function updateTodo(index, name, description, endDate) {
+  Todocreate[index] = { name, description, endDate };
+  console.log("updating: ", Todocreate)
+  updateTodoList();
+}
+
+function Delete(index) {
+  Todocreate.splice(index, 1)
+  console.log("delete:", index, Todocreate);
+  updateTodoList();
+}
+
+function updateTodoList() {
+  const todoList = document.getElementById('todo-list');
+  todoList.innerHTML = '';
+
+  Todocreate.forEach((todo, index) => {
+    const li = document.createElement('li');
+    li.textContent = `${todo.name} - ${todo.description} (${todo.endDate})`;
+
+    const editBtn = document.createElement('button');
+    editBtn.textContent = 'Edit';
+    editBtn.addEventListener('click', () => {
+      selectedIndex = index;
+      document.getElementById('name').value = todo.name;
+      document.getElementById('description').value = todo.description;
+      document.getElementById('endDate').value = todo.endDate;
+      document.getElementById('create-btn').style.display = 'none';
+      document.getElementById('update-btn').style.display = 'inline';
+    });
+
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent = 'Delete';
+    deleteBtn.addEventListener('click', () => Delete(index));
+
+    li.appendChild(editBtn);
+    li.appendChild(deleteBtn);
+    todoList.appendChild(li);
+  });
+}
+
+document.getElementById('create-btn').addEventListener('click', () => {
+  const nameInput = document.getElementById('name');
+  const descriptionInput = document.getElementById('description');
+  const endDateInput = document.getElementById('endDate');
+
+  create(nameInput.value, descriptionInput.value, endDateInput.value);
+
+  nameInput.value = '';
+  descriptionInput.value = '';
+  endDateInput.value = '';
+});
+
+document.getElementById('update-btn').addEventListener('click', () => {
+  const nameInput = document.getElementById('name');
+  const descriptionInput = document.getElementById('description');
+  const endDateInput = document.getElementById('endDate');
+
+  updateTodo(selectedIndex, nameInput.value, descriptionInput.value, endDateInput.value);
+
+  nameInput.value = '';
+  descriptionInput.value = '';
+  endDateInput.value = '';
+  document.getElementById('create-btn').style.display = 'inline';
+  document.getElementById('update-btn').style.display = 'none';
+});
+</script>
+</body>
+</html>
