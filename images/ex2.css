@@ -1,0 +1,79 @@
+header{
+    display: flex;
+}
+body{
+   background-image: url(im_cool\(12\).jpg);
+    background-position: center;
+    background-size:cover ;
+    color: white;
+}
+.section{
+    padding: 30PX;
+    padding-bottom: 10PX;
+    border: 1px solid transparent;
+}
+.shop{
+    max-width: 300PX;
+    border: 1px solid transparent;
+  }
+.lieu{
+    margin-top: 50px;
+    max-width: 130px;
+    border: 1px solid transparent;   
+}
+ul{
+    float: left;
+    list-style: none;
+    border: 1px solid transparent; 
+    max-width: 50px; 
+}
+.country{
+    border: 1px solid transparent; 
+     max-width: 120px;
+     margin-left: 300PX;
+     margin-top: 120PX;
+}
+.customer{
+    border: 1px solid transparent; 
+    max-width: 100px;
+    margin: 13px;
+    margin-top: 20px;
+    margin-left: 300px;
+}
+.link{
+      float: right;
+    max-width: 100px;
+}
+.see{
+    border: 1px solid transparent; 
+}
+.p {
+    border: 1px solid transparent; 
+    padding-top: 100PX;
+}
+
+.block{
+    max-width: 80%;
+    margin-left: 150px;  
+
+}
+.class{
+   display: inline-flex;
+    border: 1px solid transparent; 
+  padding: 70px;
+  margin: 5px;
+  border-radius: 3%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.block button{
+    display: flex;
+    margin-top: 20px;
+margin-left: 45%;
+}
+button{
+    padding: 5px;
+    color: black;
+    background-color: bisque;
+    padding: 5px;
+    border-radius: 5%;
+}
